@@ -11,7 +11,7 @@ helptxt(){
 }
 
 if [[ "$1" ]]; then
-	convert $1 -strip -trim $1
+	convert $1 -strip -trim -compress jpeg -quality 100 $1
 fi
 
 helptxt
