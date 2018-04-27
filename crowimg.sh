@@ -30,7 +30,7 @@ if [[ $firstparam == *"jpg"* || $firstparam == *"jpeg"* ]]; then
 fi
 
 if [[ $firstparam == *"png"* ]]; then
-	optipng $1
+	optipng -preserve -zc 9 -zm 9 -zs 3 $1
 	exiting
 fi
 
