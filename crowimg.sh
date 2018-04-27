@@ -16,8 +16,8 @@ trap exiting SIGTSTP # Ctrl+Z
 
 helptxt(){
 	echo -e "\n\tUsage:"
-	echo -e "\tbash $0 image.jpg"
-	echo -e "\tbash $0 100 image.jpg"
+	echo -e "\tbash $0 image.jp(e)g"
+	echo -e "\tbash $0 100 image.jp(e)g"
 	echo -e "\tbash $0 image.png\n"
 }
 
