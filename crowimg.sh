@@ -15,20 +15,28 @@ trap exiting SIGQUIT # Terminate
 trap exiting SIGTSTP # Ctrl+Z
 
 helptxt(){
-	echo -e "\n\t${BOLD}Usage: bash $0 100 image.jpg${NC}"
-	echo -e "\t${BOLD}First param: Image quality${NC}"
-	echo -e "\t${BOLD}Second param: Image${NC}\n"
+	echo -e "\n\tUsage:"
+	echo -e "\tbash $0 image.jpg"
+	echo -e "\tbash $0 100 image.jpg"
+	echo -e "\tbash $0 image.png\n"
 }
 
-if [[ "$2" ]]; then
-	imagetype="${2##*.}"
-	if [ imagetype -eq "jpg" ]; then
-		jpegoptim -stpPSm $1 $2
-	fi
+firstparam="${1##*.}"
+secondparam="${2##*.}"
 
-	if [ imagetype -eq "png" ]; then
-		optipng -o 7 $2
-	fi
-else
-	helptxt
+if [[ $firstparam == *"jpg"* || $firstparam == *"jpeg"* ]]; then
+	jpegoptim -stpPSm $firstparam
+	exiting
 fi
+
+if [[ $firstparam == *"png"* ]]; then
+	optipng -o 7 $firstparam
+	exiting
+fi
+
+if [[ $firstparam =~ ^-?[0-9]+$ && ($secondparam == *"jpg"* || $secondparam == *"jpeg"*) ]]; then
+	jpegoptim -stpPSm $firstparam $secondparam
+	exiting
+fi
+
+helptxt
