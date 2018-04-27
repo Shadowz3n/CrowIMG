@@ -1,12 +1,4 @@
 #!/bin/bash
-if [ -z jpegoptim ]; then
-	sudo apt-get install jpegoptim -y
-fi
-
-if [ -z optipng ]; then
-	sudo apt-get install optipng -y
-fi
-
 exiting(){
 	exit 1
 }
@@ -15,28 +7,11 @@ trap exiting SIGQUIT # Terminate
 trap exiting SIGTSTP # Ctrl+Z
 
 helptxt(){
-	echo -e "\n\tUsage:"
-	echo -e "\tbash $0 image.jp(e)g"
-	echo -e "\tbash $0 100 image.jp(e)g"
-	echo -e "\tbash $0 image.png\n"
+	echo -e "\n\tUsage: bash $0 image.jpg\n"
 }
 
-firstparam="${1##*.}"
-secondparam="${2##*.}"
-
-if [[ $firstparam == *"jpg"* || $firstparam == *"jpeg"* ]]; then
-	jpegoptim -stpPSm $1
-	exiting
-fi
-
-if [[ $firstparam == *"png"* ]]; then
-	optipng -preserve -zc 9 -zm 9 -zs 3 $1
-	exiting
-fi
-
-if [[ $firstparam =~ ^-?[0-9]+$ && ($secondparam == *"jpg"* || $secondparam == *"jpeg"*) ]]; then
-	jpegoptim -stpPSm $1 $2
-	exiting
+if [[ "$1" ]]; then
+	convert $1 -strip -trim $1
 fi
 
 helptxt
