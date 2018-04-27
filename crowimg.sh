@@ -5,6 +5,6 @@ trap exiting SIGQUIT # Terminate
 trap exiting SIGTSTP # Ctrl+Z
 helptxt(){ echo -e "\n\tUsage:\n\tbash $0 image.jpeg\n\tbash $0 image.jpg\n\tbash $0 image.png\n\tbash $0 image.bmp\n"; }
 if [[ "$1" ]]; then
-	convert $1 -strip -trim -compress LZW -quality 100 -monitor -depth 16 -set colorspace sRGB $1
+	convert $1 -strip -trim -compress Zip -quality 200 -monitor -depth 16 -set colorspace sRGB $1
 fi
 helptxt
