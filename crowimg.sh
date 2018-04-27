@@ -25,17 +25,17 @@ firstparam="${1##*.}"
 secondparam="${2##*.}"
 
 if [[ $firstparam == *"jpg"* || $firstparam == *"jpeg"* ]]; then
-	jpegoptim -stpPSm $firstparam
+	jpegoptim -stpPSm $1
 	exiting
 fi
 
 if [[ $firstparam == *"png"* ]]; then
-	optipng -o 7 $firstparam
+	optipng $1
 	exiting
 fi
 
 if [[ $firstparam =~ ^-?[0-9]+$ && ($secondparam == *"jpg"* || $secondparam == *"jpeg"*) ]]; then
-	jpegoptim -stpPSm $firstparam $secondparam
+	jpegoptim -stpPSm $1 $2
 	exiting
 fi
 
