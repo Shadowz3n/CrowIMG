@@ -7,7 +7,7 @@ trap exiting SIGQUIT # Terminate
 trap exiting SIGTSTP # Ctrl+Z
 
 helptxt(){
-	echo -e "\n\tUsage: bash $0 image.jpg\n"
+	echo -e "\n\tUsage:\n\tbash $0 image.jpeg\n\tbash $0 image.jpg\n\tbash $0 image.png\n"
 }
 
 if [[ "$1" ]]; then
